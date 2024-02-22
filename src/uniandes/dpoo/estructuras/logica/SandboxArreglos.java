@@ -1,5 +1,6 @@
 package uniandes.dpoo.estructuras.logica;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -305,6 +306,13 @@ public class SandboxArreglos
      */
     public void volverPositivos( )
     {
+    	int tamaño = arregloEnteros.length;
+        for (int i = 0; i < tamaño; i++) {
+            if (arregloEnteros[i] < 0) 
+            {
+                arregloEnteros[i] *= -1;
+            }
+        }
 
     }
 
@@ -313,6 +321,7 @@ public class SandboxArreglos
      */
     public void organizarEnteros( )
     {
+    	Arrays.sort(arregloEnteros);
 
     }
 
@@ -321,6 +330,7 @@ public class SandboxArreglos
      */
     public void organizarCadenas( )
     {
+    	Arrays.sort(arregloCadenas);
 
     }
 
@@ -331,7 +341,14 @@ public class SandboxArreglos
      */
     public int contarApariciones( int valor )
     {
-        return -1;
+        int contador = 0;
+        for (int elemento : arregloEnteros) 
+        {
+            if (elemento == valor) {
+                contador++;
+            }
+        }
+        return contador;
     }
 
     /**
@@ -343,7 +360,15 @@ public class SandboxArreglos
      */
     public int contarApariciones( String cadena )
     {
-        return -1;
+        int contador = 0;
+        for (String elemento : arregloCadenas) 
+        {
+            if (elemento.equalsIgnoreCase(cadena)) 
+            {
+                contador++;
+            }
+        }
+        return contador;
     }
 
     /**

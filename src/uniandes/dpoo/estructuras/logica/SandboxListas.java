@@ -146,6 +146,17 @@ public class SandboxListas
      */
     public void insertarEntero( int entero, int posicion )
     {
+    	int cantidadEnteros = listaEnteros.size();
+    	if (posicion < 0)
+    	{
+    		posicion = 0;
+    	} else if (posicion > cantidadEnteros)
+    	{
+    		posicion = cantidadEnteros;
+    	} else
+    	{
+    		listaEnteros.add(posicion, entero);
+    	}
 
     }
 
@@ -156,6 +167,12 @@ public class SandboxListas
      */
     public void eliminarEnteroPorPosicion( int posicion )
     {
+    	int tamaño = listaEnteros.size();
+    	if (posicion >= 0 && posicion < tamaño);
+    	{
+    		listaEnteros.remove(posicion);
+    	}
+    	
 
     }
 
@@ -167,6 +184,13 @@ public class SandboxListas
      */
     public void reiniciarArregloEnteros( double[] valores )
     {
+    	listaEnteros.clear(); 
+        
+        for (double valor : valores) 
+        {
+            int entero = (int) Math.floor(valor); 
+            listaEnteros.add(entero); 
+        }
     }
 
     /**
@@ -177,8 +201,17 @@ public class SandboxListas
      */
     public void reiniciarArregloCadenas( List<Object> objetos )
     {
-
+    	listaCadenas.clear(); 
+        
+        
+        for (Object objeto : objetos) 
+        {
+            String cadena = objeto.toString(); 
+            listaCadenas.add(cadena); 
+        }
     }
+    
+    
 
     /**
      * Modifica la lista de enteros para que todos los valores sean positivos.
@@ -187,13 +220,32 @@ public class SandboxListas
      */
     public void volverPositivos( )
     {
+    	List<Integer> listaNueva = new ArrayList<Integer>( );
+        for (int valor : listaEnteros) 
+        {
+            if (valor < 0) 
+            {
+                listaNueva.add(-valor);
+            } else 
+            
+            {
+                
+                listaNueva.add(valor);
+            }
+        }
+    	
+    	listaEnteros = listaNueva;
+    	
     }
 
+    
+    
     /**
      * Modifica la lista de enteros para que todos los valores queden organizados de MAYOR a MENOR.
      */
     public void organizarEnteros( )
     {
+    	Collections.sort(listaEnteros, Collections.reverseOrder());
 
     }
 
@@ -202,6 +254,7 @@ public class SandboxListas
      */
     public void organizarCadenas( )
     {
+    	Collections.sort(listaCadenas);
 
     }
 
@@ -212,7 +265,16 @@ public class SandboxListas
      */
     public int contarApariciones( int valor )
     {
-        return -1;
+    	int contador = 0; 
+    	int cantidadCadenas = listaEnteros.size();
+    	for(int i = 0; i < cantidadCadenas; i++)
+    	{
+    		if (listaEnteros.get(i).equals(valor))
+    		{
+    			contador ++;
+    		}
+    	}
+    	return contador;
     }
 
     /**
@@ -224,7 +286,13 @@ public class SandboxListas
      */
     public int contarApariciones( String cadena )
     {
-        return -1;
+        int contador = 0;
+        for (String elemento : listaCadenas) {
+            if (elemento.equalsIgnoreCase(cadena)) {
+                contador++;
+            }
+        }
+        return contador;
     }
 
     /**
